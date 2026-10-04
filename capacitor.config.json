@@ -1,0 +1,11 @@
+{
+  "appId": "au.mustafa.iqraisland",
+  "appName": "Iqra Island",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#bdeefa",
+    "allowMixedContent": false,
+    "captureInput": false,
+    "webContentsDebuggingEnabled": false
+  }
+}
