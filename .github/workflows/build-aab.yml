@@ -48,7 +48,8 @@ jobs:
 
       - name: Prepare release (API 36, version, signing)
         env:
-          VERSION_CODE: ${{ github.run_number }}
+          # Offset keeps the code above anything already uploaded to Play (Play never allows reuse or going down)
+          VERSION_CODE: ${{ github.run_number + 100 }}
           VERSION_NAME: ${{ github.event.inputs.version_name || github.ref_name }}
         run: node scripts/prepare-android.mjs
 
@@ -73,8 +74,8 @@ jobs:
       - name: Rename outputs
         run: |
           mkdir -p out
-          cp android/app/build/outputs/bundle/release/app-release.aab out/iqra-island-${{ github.run_number }}.aab
-          cp android/app/build/outputs/apk/release/app-release.apk out/iqra-island-${{ github.run_number }}.apk
+          cp android/app/build/outputs/bundle/release/app-release.aab out/iqra-island-vc${{ github.run_number + 100 }}.aab
+          cp android/app/build/outputs/apk/release/app-release.apk out/iqra-island-vc${{ github.run_number + 100 }}.apk
 
       - uses: actions/upload-artifact@v4
         with:
